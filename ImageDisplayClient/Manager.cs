@@ -55,6 +55,30 @@ namespace ImageDisplayClient
             finally { }
         }
 
+        public void ReadConfigFile()
+        {
+            string path = @"c:\summit\imagerconfig.txt";
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("No Config file found in C:\\summit");
+                Global.mainForm.Close();
+            }
+
+            // Open the file to read from.
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine("Read from config file: " + s);
+                    Global.myCameraNumber = s;
+                }
+                
+            }
+            
+            
+        }
+
         public void Start()
         {
             while(true)
@@ -66,9 +90,14 @@ namespace ImageDisplayClient
                 else
                     break;
             }
+
+            //Read Config file.
+            //Let Server know which order this client is:
+            ReadConfigFile();
+
             Global.SetCamera();
             mainForm = Global.mainForm;
-            mainForm.ShowImage("2");
+            //mainForm.ShowImage("2");
             //Wait for UDP broadcast
 
             UDPConnection udpc = new UDPConnection(49455);

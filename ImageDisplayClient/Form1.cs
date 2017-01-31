@@ -24,8 +24,8 @@ namespace ImageDisplayClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //FormBorderStyle = FormBorderStyle.None;
-            //WindowState = FormWindowState.Maximized;
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
             Global.SetForm(this);
         }
 
@@ -33,53 +33,66 @@ namespace ImageDisplayClient
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
+            {
+                Global.closing = true;
                 this.Close();
+            }
+                
         }
         private void ShowImageInvoke(string index)
         {
             switch (index)
             {
                 case "0":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._0;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
                     break;
                 case "1":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._1;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage1;
                     break;
                 case "2":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._2;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage2;
                     break;
                 case "3":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._3;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage3;
                     break;
                 case "4":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._4;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage4;
                     break;
                 case "5":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._5;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage5;
                     break;
                 case "6":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._6;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage6;
                     break;
                 case "7":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._7;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage7;
                     break;
                 case "8":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._8;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage8;
                     break;
                 case "9":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._9;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage9;
                     break;
                 case "10":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._10;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage10;
                     break;
                 case "11":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._11;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage11;
                     break;
                 case "black":
                     pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
                     break;
+                case "white":
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                    break;
+                case "gray":
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                    break;
+                case "intro":
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
+                    break;
                 default:
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources._0;
+                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
                     break;
             }
             

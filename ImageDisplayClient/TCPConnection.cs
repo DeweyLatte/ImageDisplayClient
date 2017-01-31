@@ -54,7 +54,9 @@ namespace ImageDisplayClient
                         // Translate data bytes to a ASCII string.
                         data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                         Console.WriteLine("Received: {0}", data);
-                        if(data == "1" || data == "2" || data == "3" || data == "4" || data == "5" || data == "6" || data == "7" || data == "8" || data == "9" || data == "10" || data == "11" || data == "12" || data == "black")
+                        data = data.Substring(1);
+                        if(data == "1" || data == "2" || data == "3" || data == "4" || data == "5" || data == "6" || data == "7" || data == "8" || data == "9" || data == "10" || data == "11" || data == "12" || data == "black"
+                            || data == "white" || data == "gray")
                         {
                             Thread tt = new Thread(() => Global.ChangeImage(data));
                             tt.Start();
@@ -66,24 +68,33 @@ namespace ImageDisplayClient
                         }
                         else if(data.Contains("SE"))
                         {
+                            //exposure
                             Thread ts = new Thread(() => Global.SetExp(data));
                             ts.Start();
                         }
-                        else if (data.Contains("CN"))
+                        else if (data.Contains("PN"))
                         {
-                            Thread tcn = new Thread(() => Global.SetCN(data));
-                            tcn.Start();
+                            //camera number
+                            Thread tpn = new Thread(() => Global.SetPN(data));
+                            tpn.Start();
                         }
                         else if (data.Contains("CC"))
                         {
+                            //capturecount
                             Thread tcc = new Thread(() => Global.SetCC(data));
                             tcc.Start();
+                        }
+                        else if (data.Contains("COPY"))
+                        {
+                            Thread tcopy = new Thread(() => Global.SetCopy(data));
+                            tcopy.Start();
                         }
                         Thread.Sleep(10);
                     }
 
                     // Shutdown and end connection
                     tcpclient.Close();
+                    Global.closing = true;
                     System.Diagnostics.Process.Start(Application.ExecutablePath); // to start new instance of application
                     Global.mainForm.Close(); //to turn off current app
                 }
@@ -106,8 +117,12 @@ namespace ImageDisplayClient
 
         public void Send(string p_msg)
         {
+            char b = (char)p_msg.Length;
+            string t = "";
+            t += b;
+            t += p_msg;
             // Translate the passed message into ASCII and store it as a Byte array.
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(p_msg);
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(t);
 
             // Get a client stream for reading and writing.
             //  Stream stream = client.GetStream();
@@ -116,8 +131,8 @@ namespace ImageDisplayClient
             NetworkStream stream = tcpclient.GetStream();
             // Send the message to the connected TcpServer. 
             stream.Write(data, 0, data.Length);
-
-            Console.WriteLine("Sent: {0}", p_msg);
+            
+            Console.WriteLine("Sent: {0}", t);
 
             // Receive the TcpServer.response.
 
@@ -134,9 +149,16 @@ namespace ImageDisplayClient
                 // combination.
 
                 tcpclient = new TcpClient(serverIP, port);
+               
                 Task t = new Task(Listen);
                 t.Start();
-
+                Thread.Sleep(2000);
+                Send("MCN," + Global.myCameraNumber);
+                //for(int i = 0; i < 100; i++)
+                {
+                    //Send("MCN," + Global.myCameraNumber + char.MinValue);
+                    //Thread.Sleep(2000);
+                }
             }
             catch (ArgumentNullException e)
             {

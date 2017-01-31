@@ -10,12 +10,15 @@ namespace ImageDisplayClient
     {
         public static string captureCount = "";
         public static string cameraNumber = "";
+        public static string projectorNumber = "";
         public static Manager value;
         public static Form1 mainForm;
         public static Camera cam;
         public static bool mainFormLoaded = false;
         public static string sessionID = "1234";
         public static string pathName = null;
+        public static string myCameraNumber = "";  //This is the camera order.
+        public static bool closing = false;
         public static void SetForm(Form1 p_form)
         {
             mainForm = p_form;
@@ -39,16 +42,23 @@ namespace ImageDisplayClient
             cam.SetExp(temp[1]);
         }
 
-        public static void SetCN(string p_value)
+        public static void SetPN(string p_value)
         {
             string[] temp = p_value.Split(',');
-            cameraNumber = temp[1];
+            projectorNumber = temp[1];
         }
 
         public static void SetCC(string p_value)
         {
             string[] temp = p_value.Split(',');
             captureCount = temp[1];
+        }
+
+        public static void SetCopy(string p_value)
+        {
+            //string[] temp = p_value.Split(',');
+            //captureCount = temp[1];
+            //Copy the files to a designated location.
         }
 
         public static void ClearImages()

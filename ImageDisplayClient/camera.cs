@@ -16,6 +16,8 @@ namespace ImageDisplayClient
     public class Camera
     {
         VideoCapture capture;
+        Image<Bgr,byte> resImg = null;
+        Mutex img = new Mutex();
         public Camera()
         {
 
@@ -24,49 +26,87 @@ namespace ImageDisplayClient
         public void Start()
         {
             ImageViewer viewer = new ImageViewer(); //create an image viewer
-            capture = new VideoCapture(0); //create a camera captue
-            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Exposure, -1); //-13 to -1
+            capture = new VideoCapture(); //create a camera captue
+            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.AutoExposure, 0);
+            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Exposure, -3); //-13 to -1
             //capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps, 30);  //15
             //capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Brightness, 30);  //-64 - 64
             // capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Gain, 10);  //0 - 64
-            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 3264);
-            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 2448);
-            Thread.Sleep(1000);
+            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 2592);
+            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 1944);
+            
+            Thread tt = new Thread(() => InitCamera());
+            tt.Start();
+
+            
             //Application.Idle += new EventHandler(delegate (object sender, EventArgs e)
             //{  //run this until application closed (close button click on image viewer)
             //    capture.Grab();
             //});
 
-            //capture.ImageGrabbed += new EventHandler(delegate (object sender, EventArgs e)
-            //{  //run this until application closed (close button click on image viewer)
-            //    Image<Bgr, Byte> imageInvert = new Image<Bgr, Byte>(640, 480);
-            //    capture.Retrieve(imageInvert); //draw the image obtained from camera
-            //    viewer.Image = imageInvert;
-            //});
+            capture.ImageGrabbed += new EventHandler(delegate (object sender, EventArgs e)
+            {  //run this until application closed (close button click on image viewer)
+                img.WaitOne();
+                Image<Bgr, Byte> imageInvert = new Image<Bgr, Byte>(2592, 1944);
+                capture.Retrieve(imageInvert); //draw the image obtained from camera
+                //viewer.Image = imageInvert;
+                resImg = imageInvert;
+                img.ReleaseMutex();
+            });
+
+            Thread ttt = new Thread(() => {
+                while(true)
+                {
+                    if (Global.closing)
+                        break;
+                    capture.Grab();
+                    Thread.Sleep(100);
+                }
+                });
+            ttt.Start();
 
             //viewer.Show(); //show the image viewer
+        }
+
+        private void InitCamera()
+        {
+            Thread.Sleep(3000);
+            for (int i = 0; i < 1; i++)
+            {
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.AutoExposure, 0);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Exposure, -3); //-13 to -1
+                Mat tep = capture.QueryFrame();
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.AutoExposure, 0);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Exposure, -3); //-13 to -1
+            }
         }
 
         public string GenerateName()
         {
             string fn = Global.pathName;
-            fn += Global.cameraNumber;
-            fn += "-";
+            fn += "IM_";
+            fn += Global.myCameraNumber;
+            fn += "_";
+            fn += Global.projectorNumber;
+            fn += "_";
             fn += Global.captureCount;
-            fn += ".png";
+            fn += ".jpg";
             return fn;
         }
 
         public void CaptureFrame()
         {
-            Mat res = null;
-            for (int i = 0; i < 3; i ++)
-            {
-                res = capture.QueryFrame();
-            }
+            //Mat res = null;
+            //for (int i = 0; i < 3; i ++)
+            //{
+            //    res = capture.QueryFrame();
+            //}
             string name = GenerateName();
-            res.Save(@name);
-            //saveJpeg("C:\\test.jpg", res.Bitmap, 100);
+            img.WaitOne();
+            saveJpeg(@name, resImg.Bitmap, 80);
+            img.ReleaseMutex();
+            //res.Save(@name);
+            //saveJpeg(@name, res.Bitmap, 80);
         }
 
         private void saveJpeg(string path, Bitmap img, long quality)
