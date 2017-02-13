@@ -19,7 +19,6 @@ namespace ImageDisplayClient
         {
             serverIP = p_serverIP;
             port = Convert.ToInt32(p_serverPort);
-           
         }
 
         public void Start()
@@ -32,7 +31,6 @@ namespace ImageDisplayClient
             TcpListener server = null;
             try
             {
-
                 // Buffer for reading data
                 Byte[] bytes = new Byte[256];
                 String data = null;
@@ -45,7 +43,7 @@ namespace ImageDisplayClient
 
                     // Get a stream object for reading and writing
                     NetworkStream stream = tcpclient.GetStream();
-
+                    
                     int i;
 
                     // Loop to receive all the data sent by the client.
@@ -61,30 +59,78 @@ namespace ImageDisplayClient
                             Thread tt = new Thread(() => Global.ChangeImage(data));
                             tt.Start();
                         }
-                        else if(data == "capture")
+                        else if(data.Contains("capture"))
                         {
                             Thread tc = new Thread(() => Global.Capture());
                             tc.Start();
                         }
-                        else if(data.Contains("SE"))
+                        else if(data.Contains("SE"))  //Set Exposure Level.
                         {
                             //exposure
                             Thread ts = new Thread(() => Global.SetExp(data));
                             ts.Start();
                         }
-                        else if (data.Contains("PN"))
+                        else if (data.Contains("SB"))  //Set Brightness Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetBrightness(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SC"))  //Set Contrast Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetContrast(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SG"))  //Set Gain Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetGain(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SGAM"))  //Set Gamma Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetGamma(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SS"))  //Set Saturation Level
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetSat(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SSHARP"))  //Set Sharpness Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetSharp(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SH"))  //Set HUE Level.
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetHue(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("SWB"))  //Set WhiteBalance
+                        {
+                            //exposure
+                            Thread ts = new Thread(() => Global.SetWB(data));
+                            ts.Start();
+                        }
+                        else if (data.Contains("PN")) // Projector Number
                         {
                             //camera number
                             Thread tpn = new Thread(() => Global.SetPN(data));
                             tpn.Start();
                         }
-                        else if (data.Contains("CC"))
+                        else if (data.Contains("CC"))  //Capture Count
                         {
                             //capturecount
                             Thread tcc = new Thread(() => Global.SetCC(data));
                             tcc.Start();
                         }
-                        else if (data.Contains("COPY"))
+                        else if (data.Contains("COPY"))  //Copy data to the main client
                         {
                             Thread tcopy = new Thread(() => Global.SetCopy(data));
                             tcopy.Start();
@@ -102,14 +148,12 @@ namespace ImageDisplayClient
             catch (SocketException e)
             {
                 Console.WriteLine("SocketException: {0}", e);
-               
             }
             finally
             {
                 // Stop listening for new clients.
-                server.Stop();
+                //server.Stop();
             }
-
 
             Console.WriteLine("\nHit enter to continue...");
             Console.Read();
@@ -117,12 +161,25 @@ namespace ImageDisplayClient
 
         public void Send(string p_msg)
         {
-            char b = (char)p_msg.Length;
+            int b = (int)p_msg.Length;
+
+            byte[] intBytes = BitConverter.GetBytes(b);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(intBytes);
+            byte[] result = intBytes;
+
             string t = "";
-            t += b;
+            t += "AAAA";
+            //t += result[1];
+            //t += result[2];
+            //t += result[3];
             t += p_msg;
             // Translate the passed message into ASCII and store it as a Byte array.
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(t);
+            data[0] = result[0];
+            data[1] = result[1];
+            data[2] = result[2];
+            data[3] = result[3];
 
             // Get a client stream for reading and writing.
             //  Stream stream = client.GetStream();

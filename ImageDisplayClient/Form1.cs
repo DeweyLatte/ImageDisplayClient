@@ -24,8 +24,16 @@ namespace ImageDisplayClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
+            //FormBorderStyle = FormBorderStyle.None;
+            //WindowState = FormWindowState.Maximized;
+            if(Global.myProjNumber == "1")
+                this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.IM_1_1;
+            else if (Global.myProjNumber == "2")
+                this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.IM_1_1;
+            else if (Global.myProjNumber == "3")
+                this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.IM_1_1;
+            else if (Global.myProjNumber == "4")
+                this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.IM_1_1;
             Global.SetForm(this);
         }
 
@@ -41,61 +49,351 @@ namespace ImageDisplayClient
         }
         private void ShowImageInvoke(string index)
         {
-            switch (index)
+            if(Global.myProjNumber == "1")
             {
-                case "0":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
-                    break;
-                case "1":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage1;
-                    break;
-                case "2":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage2;
-                    break;
-                case "3":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage3;
-                    break;
-                case "4":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage4;
-                    break;
-                case "5":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage5;
-                    break;
-                case "6":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage6;
-                    break;
-                case "7":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage7;
-                    break;
-                case "8":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage8;
-                    break;
-                case "9":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage9;
-                    break;
-                case "10":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage10;
-                    break;
-                case "11":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.blobImage11;
-                    break;
-                case "black":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
-                    break;
-                case "white":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
-                    break;
-                case "gray":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
-                    break;
-                case "intro":
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
-                    break;
-                default:
-                    pictureBox1.Image = ImageDisplayClient.Properties.Resources.intro;
-                    break;
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
             }
-            
+            else if (Global.myProjNumber == "2")
+            {
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
+            }
+            else if (Global.myProjNumber == "3")
+            {
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
+            }
+            else if (Global.myProjNumber == "4")
+            {
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
+            }
+            else if (Global.myProjNumber == "5")
+            {
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
+            }
+            else if (Global.myProjNumber == "-1")
+            {
+                switch (index)
+                {
+                    case "0":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    case "1":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_1;
+                        break;
+                    case "2":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_2;
+                        break;
+                    case "3":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_3;
+                        break;
+                    case "4":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_4;
+                        break;
+                    case "5":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_5;
+                        break;
+                    case "6":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_6;
+                        break;
+                    case "7":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_7;
+                        break;
+                    case "8":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_8;
+                        break;
+                    case "9":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_9;
+                        break;
+                    case "10":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_10;
+                        break;
+                    case "11":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.IM_1_11;
+                        break;
+                    case "black":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.black;
+                        break;
+                    case "white":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.white;
+                        break;
+                    case "gray":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.gray;
+                        break;
+                    case "intro":
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                    default:
+                        pictureBox1.Image = ImageDisplayClient.Properties.Resources.main;
+                        break;
+                }
+            }
+
+
+
         }
 
 

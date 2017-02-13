@@ -35,7 +35,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.intro;
+            this.pictureBox1.Image = global::ImageDisplayClient.Properties.Resources.IM_1_1;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(284, 261);
@@ -59,7 +59,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
